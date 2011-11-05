@@ -20,3 +20,6 @@ To run you must create a `Options.cs` file of the following format
 			public static int numberThreads = 4;
 		}
 	}
+
+# TODO
+* Refactor the consumer and producer (relabel and split up, add producer interface)
