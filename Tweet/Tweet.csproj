@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IConsumer.cs" />
+    <Compile Include="IProducer.cs" />
     <Compile Include="Model\BoundingBox.cs" />
     <Compile Include="Model\Entities.cs" />
     <Compile Include="Model\Geo.cs" />
@@ -56,7 +57,8 @@
     <Compile Include="Options.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TwitterEater.cs" />
+    <Compile Include="TweetConsumer.cs" />
+    <Compile Include="TweetProducer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

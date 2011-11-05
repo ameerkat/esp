@@ -1,13 +1,12 @@
 ﻿using System;
-using Tweet.Model;
 
 namespace Tweet
 {
-    interface IConsumer
+    interface IProducer
     {
         void Start();
         void Stop();
+        String ReadLine();
         int Count();
-        Status Deserialize(String parseMe);
     }
 }
