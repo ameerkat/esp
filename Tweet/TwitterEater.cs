@@ -78,7 +78,10 @@ namespace Tweet
                 String result = null;
                 try
                 {
-                    result = unparsedTweets.Dequeue();
+                    if (unparsedTweets.Count != 0)
+                    {
+                        result = unparsedTweets.Dequeue();
+                    }
                 }
                 catch (InvalidOperationException e)
                 {

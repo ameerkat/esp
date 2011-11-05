@@ -13,11 +13,7 @@ namespace Tweet
 
         static void Main(string[] args)
         {
-            String twitterStreamUrl = "https://stream.twitter.com/1/statuses/filter.json?track=fire";
-            String twitterUsername = "TeamTitansAZ";
-            String twitterPassword = "password";
-
-            TwitterEater twitterEater = new TwitterEater(twitterStreamUrl, twitterUsername, twitterPassword);
+            TwitterEater twitterEater = new TwitterEater(Options.twitterStreamUrl, Options.twitterUsername, Options.twitterPassword);
             twitterEater.Start();
 
 
