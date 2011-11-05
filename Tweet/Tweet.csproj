@@ -47,7 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\BoundingBox.cs" />
+    <Compile Include="Model\Entities.cs" />
     <Compile Include="Model\Geo.cs" />
+    <Compile Include="Model\HashTags.cs" />
     <Compile Include="Model\Place.cs" />
     <Compile Include="Model\Tweet.cs" />
     <Compile Include="Options.cs" />

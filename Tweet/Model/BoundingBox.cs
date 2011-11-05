@@ -11,7 +11,7 @@ namespace Tweet.Model
         public List<List<List<double>>> coordinates { get; set; }
         public override string ToString()
         {
-            return "type : " + type + "\ncoordinates: " + coordinates;
+            return "\n[Bounding Box]\ntype : " + type + "\ncoordinates: " + coordinates + "\n[/Bounding Box]";
         }
     }
 }

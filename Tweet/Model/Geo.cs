@@ -10,7 +10,7 @@ namespace Tweet.Model
         public String type { get; set; }
         public List<Double> coordinates { get; set; }
         public override string ToString(){
-            return "type : " + type + "\ncoordinates: " + coordinates;
+            return "\n[Geo]\ntype : " + type + "\ncoordinates: " + coordinates + "\n[/Geo]";
         }
     }
 }

@@ -5,12 +5,12 @@ using System.Text;
 
 namespace Tweet.Model
 {
-    class Place
+    class Entities
     {
-        public BoundingBox bounding_box { get; set; }
+        public HashTags hashtags { get; set; }
         public override string ToString()
         {
-            return "\n[Place]\nbounding_box : " + bounding_box + "\n[/Place]";
+            return "\n[Entities]\nhashtags : " + hashtags + "\n[/Entities]";
         }
     }
 }
