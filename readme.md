@@ -24,3 +24,5 @@ To run you must create a `Options.cs` file of the following format
 
 # TODO
 * Refactor the consumer and producer (relabel and split up, add producer interface)
+* Producers should be generalized to contain: Start, Stop, ReadLine, and GetCount methods
+* Consumers should be generalized to contain: Start, Stop, ReadStatus, and GetCount methods
