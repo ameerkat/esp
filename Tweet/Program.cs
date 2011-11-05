@@ -5,6 +5,7 @@ using System.Text;
 using System.IO;
 using System.Net;
 using System.Threading;
+using System.Web.Script.Serialization;
 
 namespace Tweet
 {
@@ -38,8 +39,10 @@ namespace Tweet
             {
                 if ((parseMe = twitterEater.ReadLine()) != null)
                 {
-                    //Parse this
-                    Console.Out.WriteLine("Thread " + threadNumber + ": \t" + parseMe);
+                    JavaScriptSerializer ser = new JavaScriptSerializer();
+                    Tweet.Model.Tweet tweet = ser.Deserialize<Tweet.Model.Tweet>(parseMe);
+                    Console.Out.WriteLine("Thread " + threadNumber + " : \n" + tweet);
+                    //Console.Out.WriteLine("Thread " + threadNumber + ": \t" + parseMe);
                 }
                 else
                 {
