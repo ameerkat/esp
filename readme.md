@@ -17,5 +17,6 @@ To run you must create a `Options.cs` file of the following format
 			public static String twitterStreamUrl = your_stream_url_here;
 			public static String twitterUsername = your_twitter_username;
 			public static String twitterPassword = your_twitter_password;
+			public static int numberThreads = 4;
 		}
 	}

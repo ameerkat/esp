@@ -18,7 +18,7 @@ namespace Tweet
             twitterEater.Start();
 
 
-            int numThreads = 4;
+            int numThreads = Options.numberThreads;
             Thread[] threads = new Thread[numThreads];
 
             for (int i = 0; i < numThreads; i++)
