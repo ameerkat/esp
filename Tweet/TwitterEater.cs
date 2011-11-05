@@ -5,10 +5,11 @@ using System.Text;
 using System.IO;
 using System.Net;
 using System.Threading;
+using System.Web.Script.Serialization;
 
 namespace Tweet
 {
-    class TwitterEater
+    class TwitterEater : IConsumer
     {
         public int count;
         private Queue<String> unparsedTweets;
@@ -23,6 +24,20 @@ namespace Tweet
             this.twitterUsername = twitterUsername;
             this.twitterPassword = twitterPassword;
             unparsedTweets = new Queue<String>();
+        }
+
+        public int getCount()
+        {
+            return this.count;
+        }
+
+        public Model.Status deserialize(String parseMe)
+        {
+            // Twitter specific deserialization, except all return Model.Status
+            // type objects.
+            JavaScriptSerializer ser = new JavaScriptSerializer();
+            Tweet.Model.Status tweet = ser.Deserialize<Tweet.Model.Status>(parseMe);
+            return tweet;
         }
 
         private void DoRead()

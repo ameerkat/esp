@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Tweet.Model
 {
-    class Tweet
+    class Status
     {
         public ulong id { get; set; }
         public ulong user_id { get; set; }
@@ -15,7 +15,7 @@ namespace Tweet.Model
         public Geo geo { get; set; }
         public override string ToString()
         {
-            return "\n[Tweet]\nid : " + id + "\nuser_id : " + user_id + "\ntext : " + text + "\ndate : " + created_at + "\nplace : " + place + "\n[/Tweet]";
+            return "\n[Status]\nid : " + id + "\nuser_id : " + user_id + "\ntext : " + text + "\ndate : " + created_at + "\nplace : " + place + "\n[/Tweet]";
         }
     }
 }

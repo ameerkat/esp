@@ -32,18 +32,17 @@ namespace Tweet
         private static void Consume(object parameters)
         {
             object[] parameterArray = (object[])parameters;
-            TwitterEater twitterEater = (TwitterEater)parameterArray[0];
+            IConsumer eater = (IConsumer)parameterArray[0];
             int threadNumber = (int)parameterArray[1];
             String parseMe;
             while (true)
             {
-                if ((parseMe = twitterEater.ReadLine()) != null)
+                if ((parseMe = eater.ReadLine()) != null)
                 {
-                    JavaScriptSerializer ser = new JavaScriptSerializer();
-                    Tweet.Model.Tweet tweet = ser.Deserialize<Tweet.Model.Tweet>(parseMe);
-                    Console.Out.WriteLine("Thread " + threadNumber + " : \n" + tweet);
+                    Model.Status status = eater.deserialize(parseMe);
+                    Console.Out.WriteLine("Thread " + threadNumber + " : \n" + status);
                     count++;
-                    Console.Out.WriteLine("Deserialized: " + count + ", Read: " + twitterEater.count);
+                    Console.Out.WriteLine("Deserialized: " + count + ", Read: " + eater.getCount());
                     //Console.Out.WriteLine("Thread " + threadNumber + ": \t" + parseMe);
                 }
                 else

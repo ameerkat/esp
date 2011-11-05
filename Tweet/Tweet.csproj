@@ -46,12 +46,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TweetModel\BoundingBox.cs" />
-    <Compile Include="TweetModel\Entities.cs" />
-    <Compile Include="TweetModel\Geo.cs" />
-    <Compile Include="TweetModel\HashTags.cs" />
-    <Compile Include="TweetModel\Place.cs" />
-    <Compile Include="TweetModel\Tweet.cs" />
+    <Compile Include="IConsumer.cs" />
+    <Compile Include="Model\BoundingBox.cs" />
+    <Compile Include="Model\Entities.cs" />
+    <Compile Include="Model\Geo.cs" />
+    <Compile Include="Model\HashTags.cs" />
+    <Compile Include="Model\Place.cs" />
+    <Compile Include="Model\Status.cs" />
     <Compile Include="Options.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
