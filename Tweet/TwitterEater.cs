@@ -10,12 +10,15 @@ namespace Tweet
 {
     class TwitterEater
     {
+        public int count;
         private Queue<String> unparsedTweets;
         private String twitterStreamUrl, twitterUsername, twitterPassword;
         private Thread tweetReader;
 
         public TwitterEater(String twitterStreamUrl, String twitterUsername, String twitterPassword)
         {
+            this.count = 0;
+
             this.twitterStreamUrl = twitterStreamUrl;
             this.twitterUsername = twitterUsername;
             this.twitterPassword = twitterPassword;
@@ -42,6 +45,7 @@ namespace Tweet
                 try
                 {
                     unparsedTweets.Enqueue(line);
+                    count++;
                 }
                 catch (Exception e)
                 {

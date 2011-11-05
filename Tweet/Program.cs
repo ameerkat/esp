@@ -11,7 +11,7 @@ namespace Tweet
 {
     class Program
     {
-
+        static int count = 0;
         static void Main(string[] args)
         {
             TwitterEater twitterEater = new TwitterEater(Options.twitterStreamUrl, Options.twitterUsername, Options.twitterPassword);
@@ -42,6 +42,8 @@ namespace Tweet
                     JavaScriptSerializer ser = new JavaScriptSerializer();
                     Tweet.Model.Tweet tweet = ser.Deserialize<Tweet.Model.Tweet>(parseMe);
                     Console.Out.WriteLine("Thread " + threadNumber + " : \n" + tweet);
+                    count++;
+                    Console.Out.WriteLine("Deserialized: " + count + ", Read: " + twitterEater.count);
                     //Console.Out.WriteLine("Thread " + threadNumber + ": \t" + parseMe);
                 }
                 else
