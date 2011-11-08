@@ -11,15 +11,18 @@ namespace Tweet
 {
     class Program
     {
-        static int count = 0;
         static void Main(string[] args)
         {
-            TweetProducer twitterEater = new TweetProducer(Options.twitterStreamUrl, Options.twitterUsername, Options.twitterPassword);
-            twitterEater.Start();
+            Dictionary<string, string> twitterOptions = new Dictionary<string, string>();
+            twitterOptions.Add("streamUrl", Options.twitterStreamUrl);
+            twitterOptions.Add("username", Options.twitterUsername);
+            twitterOptions.Add("password", Options.twitterPassword);
+            TweetProducer twitterProducer = new TweetProducer(twitterOptions);
 
+            twitterProducer.Start();
             for (int i = 0; i < Options.numberThreads; i++)
             {
-                TweetConsumer consumer = new TweetConsumer(twitterEater, i);
+                TweetConsumer consumer = new TweetConsumer(twitterProducer, i);
                 consumer.Start();
             }
         }

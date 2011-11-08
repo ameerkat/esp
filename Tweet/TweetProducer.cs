@@ -14,14 +14,31 @@ namespace Tweet
         private Queue<String> unparsedTweets;
         private String twitterStreamUrl, twitterUsername, twitterPassword;
         private Thread tweetReader;
+        // required values passed as options to the constructor in the options dictionary
+        public static string[] requiredValues = { "username", "password", "streamUrl" };
 
-        //Consider passing "options" dictionary rather than as parameters for each option
         public TweetProducer(String twitterStreamUrl, String twitterUsername, String twitterPassword)
         {
             this.count = 0;
             this.twitterStreamUrl = twitterStreamUrl;
             this.twitterUsername = twitterUsername;
             this.twitterPassword = twitterPassword;
+            this.unparsedTweets = new Queue<String>();
+        }
+
+        // Same as the plain constructor except takes a dictionary of options instead
+        public TweetProducer(Dictionary<string, string> twitterOptions)
+        {
+            this.count = 0;
+            foreach (string s in requiredValues){
+                if (!twitterOptions.ContainsKey(s)){
+                    System.ArgumentException argEx = new System.ArgumentException("Required options key missing : " + s);
+                    throw argEx;
+                }
+            }
+            this.twitterStreamUrl = twitterOptions["streamUrl"];
+            this.twitterUsername = twitterOptions["username"];
+            this.twitterPassword = twitterOptions["password"];
             this.unparsedTweets = new Queue<String>();
         }
 
