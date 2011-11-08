@@ -104,7 +104,7 @@ namespace Tweet
         private String BuildTwitterUrl(){
             bool has_params = false;
             this.fullTwitterStreamUrl = this.twitterStreamUrl;
-            if (trackKeywords.Count != 0)
+            if (trackKeywords.Count > 0)
             {
                 // add track keyword params
                 if (has_params) {
@@ -129,6 +129,10 @@ namespace Tweet
             return this.fullTwitterStreamUrl;
         }
 
+        public String GetCurrentUrl(){
+            return this.fullTwitterStreamUrl;
+        }
+
         public int Count()
         {
             return this.count;
@@ -136,7 +140,11 @@ namespace Tweet
 
         private void DoRead()
         {
-            WebRequest twitterRequest = (HttpWebRequest)WebRequest.Create(twitterStreamUrl);
+            String url = this.BuildTwitterUrl();
+            if (this.trackKeywords.Count == 0){
+                Console.Out.WriteLine("warning : 0 track keywords listed, gathering all tweets.");
+            }
+            WebRequest twitterRequest = (HttpWebRequest)WebRequest.Create(url);
             twitterRequest.Credentials = new NetworkCredential(twitterUsername, twitterPassword);
             twitterRequest.Timeout = -1;
             WebResponse twitterResponse = (HttpWebResponse)twitterRequest.GetResponse();

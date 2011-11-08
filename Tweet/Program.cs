@@ -18,8 +18,9 @@ namespace Tweet
             twitterOptions.Add("username", Options.twitterUsername);
             twitterOptions.Add("password", Options.twitterPassword);
             TweetProducer twitterProducer = new TweetProducer(twitterOptions);
-
+            twitterProducer.AddKeyword("fire");
             twitterProducer.Start();
+            Console.Out.WriteLine("stream url : " + twitterProducer.GetCurrentUrl());
             for (int i = 0; i < Options.numberThreads; i++)
             {
                 TweetConsumer consumer = new TweetConsumer(twitterProducer, i);
