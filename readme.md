@@ -25,6 +25,5 @@ tend to rely on the filter.json stream method to provide keyword and geo based s
 	}
 
 # TODO
-* Refactor the consumer and producer (relabel and split up, add producer interface)
-* Producers should be generalized to contain: Start, Stop, ReadLine, and GetCount methods
-* Consumers should be generalized to contain: Start, Stop, ReadStatus, and GetCount methods
+* Consolidate TwitterProducer and TwitterConsumer into a class inherited from "StatusProducer" which will allow for multiple services (Facebook, Twitter, Google+) to be used and produce a uniform "Status" object.
+* Use Silverlight/Bing Maps API To plot tweets: http://stackoverflow.com/questions/2162626/silverlight-add-pushpin-to-bing-maps-via-c-sharp
