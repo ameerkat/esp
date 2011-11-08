@@ -12,10 +12,18 @@ namespace Tweet
     {
         private int count;
         private Queue<String> unparsedTweets;
+        // note we build the full URL later, after we set geo options and
+        // add keywords to track this is just the base URL
         private String twitterStreamUrl, twitterUsername, twitterPassword;
+        private String fullTwitterStreamUrl;
         private Thread tweetReader;
+
+        private List<String> trackKeywords;
+        private bool isGeocoded;
+        private double[] coordinates;
+
         // required values passed as options to the constructor in the options dictionary
-        public static string[] requiredValues = { "username", "password", "streamUrl" };
+        public static String[] requiredValues = { "username", "password", "streamUrl" };
 
         public TweetProducer(String twitterStreamUrl, String twitterUsername, String twitterPassword)
         {
@@ -23,14 +31,18 @@ namespace Tweet
             this.twitterStreamUrl = twitterStreamUrl;
             this.twitterUsername = twitterUsername;
             this.twitterPassword = twitterPassword;
+            this.fullTwitterStreamUrl = null;
             this.unparsedTweets = new Queue<String>();
+            this.trackKeywords = new List<String>();
+            this.isGeocoded = true;
+            this.coordinates = new double[4]{-180.0, -90.0, 180.0, 90.0};
         }
 
         // Same as the plain constructor except takes a dictionary of options instead
-        public TweetProducer(Dictionary<string, string> twitterOptions)
+        public TweetProducer(Dictionary<String, String> twitterOptions)
         {
             this.count = 0;
-            foreach (string s in requiredValues){
+            foreach (String s in requiredValues){
                 if (!twitterOptions.ContainsKey(s)){
                     System.ArgumentException argEx = new System.ArgumentException("Required options key missing : " + s);
                     throw argEx;
@@ -40,6 +52,81 @@ namespace Tweet
             this.twitterUsername = twitterOptions["username"];
             this.twitterPassword = twitterOptions["password"];
             this.unparsedTweets = new Queue<String>();
+            this.trackKeywords = new List<String>();
+            this.fullTwitterStreamUrl = null;
+            this.isGeocoded = true;
+            this.coordinates = new double[4] { -180.0, -90.0, 180.0, 90.0 };
+        }
+
+        /*
+         * Keyword Operations
+         */
+        public void AddKeyword(String kw){
+            this.trackKeywords.Add(kw);
+        }
+        public void RemoveKeyword(String kw){
+            this.trackKeywords.Remove(kw);
+        }
+        public List<String> GetKeywords(){
+            return trackKeywords;
+        }
+        public void SetKeywords(List<String> trackKeywords){
+            this.trackKeywords = trackKeywords;
+        }
+
+        /*
+         * Geo Options
+         */
+        public bool IsGeocoded(){
+            return this.isGeocoded;
+        }
+        public void SetGeocoded(bool geo){
+            this.isGeocoded = geo;
+        }
+        public void SetCoordinates(double c1, double c2, double c3, double c4){
+            this.isGeocoded = true;
+            this.coordinates[0] = c1;
+            this.coordinates[1] = c2;
+            this.coordinates[2] = c3;
+            this.coordinates[3] = c4;
+        }
+        public void SetCoordinates(double[] coords){
+            this.isGeocoded = true;
+            this.coordinates = coords;
+        }
+        public double[] GetCoordinates(){
+            return this.coordinates;
+        }
+        public void ClearCoordinates(){
+            this.coordinates = new double[4] { -180.0, -90.0, 180.0, 90.0 };
+        }
+
+        private String BuildTwitterUrl(){
+            bool has_params = false;
+            this.fullTwitterStreamUrl = this.twitterStreamUrl;
+            if (trackKeywords.Count != 0)
+            {
+                // add track keyword params
+                if (has_params) {
+                    this.fullTwitterStreamUrl += "&";
+                } else {
+                    has_params = true;
+                    this.fullTwitterStreamUrl += "?";
+                }
+                this.fullTwitterStreamUrl += "track=" + string.Join(",", trackKeywords.ToArray());
+            }
+            if (this.isGeocoded)
+            {
+                if (has_params){
+                    this.fullTwitterStreamUrl += "&";
+                }
+                else{
+                    has_params = true;
+                    this.fullTwitterStreamUrl += "?";
+                }
+                this.fullTwitterStreamUrl += "locations=" + string.Join(",", coordinates);
+            }
+            return this.fullTwitterStreamUrl;
         }
 
         public int Count()
