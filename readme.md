@@ -27,3 +27,4 @@ tend to rely on the filter.json stream method to provide keyword and geo based s
 # TODO
 * Consolidate TwitterProducer and TwitterConsumer into a class inherited from "StatusProducer" which will allow for multiple services (Facebook, Twitter, Google+) to be used and produce a uniform "Status" object.
 * Use Silverlight/Bing Maps API To plot tweets: http://stackoverflow.com/questions/2162626/silverlight-add-pushpin-to-bing-maps-via-c-sharp
+* Come up with basic skeleton for event detection: take tweets by keyword, look for high density clusters with dbscan, consider it an event if more than X tweets supporting the cluster.
