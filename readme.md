@@ -1,4 +1,4 @@
-# ESP
+# About
 ESP is a project designed to detect natural disasters from social media
 sources (specifically twitter), make predictions of affected areas
 and provide alerts to people living in those areas automatically.
