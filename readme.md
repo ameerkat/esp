@@ -1,5 +1,5 @@
-# ESP
-esp is a project designed to detect natural disasters from social media
+# About
+ESP is a project designed to detect natural disasters from social media
 sources (specifically twitter), make predictions of affected areas
 and provide alerts to people living in those areas automatically.
 
@@ -25,6 +25,10 @@ tend to rely on the filter.json stream method to provide keyword and geo based s
 	}
 
 # TODO
-* Refactor the consumer and producer (relabel and split up, add producer interface)
-* Producers should be generalized to contain: Start, Stop, ReadLine, and GetCount methods
-* Consumers should be generalized to contain: Start, Stop, ReadStatus, and GetCount methods
+* Add in code to push deserialized tweets into a database
+* Add in a routine to do event detection and push events to another database
+	* We can use dbscan to do this http://www.c-sharpcorner.com/uploadfile/b942f9/implementing-the-dbscan-algorithm-using-C-Sharp/
+ 	* http://en.wikipedia.org/wiki/DBSCAN
+* Add some web services (could event be simple json over http) to access the events so that the client (mobile app or demo webpage etc.) can get event data, the web services should just interface the end client with our tweet/event database.
+* Consolidate TwitterProducer and TwitterConsumer into a class inherited from "StatusProducer" which will allow for multiple services (Facebook, Twitter, Google+) to be used and produce a uniform "Status" object.
+* Use Silverlight/Bing Maps API To plot tweets: http://stackoverflow.com/questions/2162626/silverlight-add-pushpin-to-bing-maps-via-c-sharp

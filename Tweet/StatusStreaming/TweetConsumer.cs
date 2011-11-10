@@ -62,6 +62,10 @@ namespace Tweet
             {
                 if ((parseMe = this.producer.ReadLine()) != null)
                 {
+                    /* 
+                     * insert into the tweet database after deserialization for the event detection
+                     * and for the API
+                     */
                     Status status = this.Deserialize(parseMe);
                     this.count++;
                     Console.Out.WriteLine("Thread " + this.threadNumber + ":\n" + status.ToString());
