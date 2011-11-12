@@ -104,7 +104,7 @@ namespace Tweet
         private String BuildTwitterUrl(){
             bool has_params = false;
             this.fullTwitterStreamUrl = this.twitterStreamUrl;
-            if (trackKeywords.Count > 0)
+            /*if (trackKeywords.Count > 0)
             {
                 // add track keyword params
                 if (has_params) {
@@ -114,7 +114,7 @@ namespace Tweet
                     this.fullTwitterStreamUrl += "?";
                 }
                 this.fullTwitterStreamUrl += "track=" + string.Join(",", trackKeywords.ToArray());
-            }
+            }*/
             if (this.isGeocoded)
             {
                 if (has_params){
@@ -203,7 +203,10 @@ namespace Tweet
         {
             try
             {
-                tweetReader.Abort();
+                if (tweetReader != null)
+                {
+                    tweetReader.Abort();
+                    }
             }
             catch (ThreadStateException e)
             {

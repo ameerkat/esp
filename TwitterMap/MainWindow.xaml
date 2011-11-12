@@ -1,0 +1,21 @@
+﻿<Window x:Class="TwitterMap.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:map="clr-namespace:Microsoft.Maps.MapControl.WPF;assembly=Microsoft.Maps.MapControl.WPF"
+        Title="TwitterMap" Height="350" Width="525">
+    <Grid Background="Black">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        <map:Map Name="x_Map" Grid.Row="0" Center="39.36830,-95.27340" ZoomLevel="4" CredentialsProvider="Atz_3JgIc3627MKYFwyjwBsixt9lfP4NXvpNoKGGHFOIzNXHgjw09zXnZRAf1xO7"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="200"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Margin="5,5,5,5" Name="keywords" Background="#44FFFFFF" Foreground="#CCFFFFFF" Text="Fire" FontSize="28" TextAlignment="Left" Grid.Column="0"/>
+            <Button Margin="0,5,5,5" Name="submit" Content="Submit" FontSize="28" Background="#DDFFFFFF" Foreground="#FF111111" Grid.Column="1" Click="submit_Click" />
+        </Grid>
+    </Grid>
+</Window>
