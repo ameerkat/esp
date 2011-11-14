@@ -80,7 +80,10 @@ namespace Tweet
                      * and for the API
                      */
                     Status status = this.Deserialize(parseMe);
-
+                    if (status.text == null || status.geo == null)
+                    {
+                        continue;
+                    }
                     bool containsKeyword = false;
                     foreach (String keyword in this.producer.GetKeywords())
                     {
@@ -90,7 +93,7 @@ namespace Tweet
                             break;
                         }
                     }
-                    if (!containsKeyword || status.geo == null)
+                    if (!containsKeyword && this.producer.GetKeywords().Count > 0)
                     {
                         continue;
                     }
