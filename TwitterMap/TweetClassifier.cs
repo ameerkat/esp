@@ -7,6 +7,14 @@ using System.Text.RegularExpressions;
 
 namespace TweetClassifier
 {
+    /*
+     * This is a really simple classifier designed at ruling out obviously
+     * mismatched tweets, and scoring tweets based on word frequencies in
+     * positive and negative results from the training sample (e.g. tweets
+     * we manually mark as potential events or not). The file format is really
+     * simple flat file format, we need some actual data which we can get once
+     * we hook up a database to the incoming tweets.
+     */
     public class TweetClassifier
     {
         public Dictionary<String, List<String>> whitelists = new Dictionary<String, List<String>>();
